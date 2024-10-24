@@ -34,7 +34,7 @@ flatpak install flathub com.rtosta.zapzap
 # Instalar as fontes que estão na pasta: Fontes
 cd /tmp/
 
-svn checkout https://github.com/raulcraveiro/automate-fedora/trunk/Fontes
+svn checkout https://github.com/OYERA1/fedora-post-install/trunk/Fontes
 
 mv -v ./Fontes/* ~/.fonts/
 
