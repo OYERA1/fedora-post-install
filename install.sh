@@ -18,26 +18,39 @@ sudo dnf install gnome-tweaks -y
 
 # Instalar o Google Chrome (e remover o aviso de gerenciado pela organização)
 sudo dnf install fedora-workstation-repositories -y
-sudo dnf copr enable the4runner/firefox-dev
-sudo dnf check-update
-sudo dnf install firefox-dev
+sudo dnf copr enable the4runner/firefox-dev -y
+sudo dnf check-update -y
+sudo dnf install firefox-dev -y
 
 # Instalar as fontes da Microsoft
 sudo dnf install https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm -y
 
 # Instalar aplicativos em flatpak
-flatpak install flathub com.spotify.Client
-flatpak install flathub com.mattjakeman.ExtensionManager
-flatpak install flathub com.github.tchx84.Flatseal
-flatpak install flathub com.rtosta.zapzap
+flatpak install flathub com.spotify.Client -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub com.github.tchx84.Flatseal -y
+flatpak install flathub com.rtosta.zapzap -y
 
-# Instalar as fontes que estão na pasta: Fontes
-cd /tmp/
+sudo dnf install zsh -y
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
 
-svn checkout https://github.com/OYERA1/fedora-post-install/trunk/Fontes
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git -y
 
-mv -v ./Fontes/* ~/.fonts/
+echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
-if [ $? -eq 1 ]; then
-    rm -rf ~/tmp/Fontes
-fi
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+echo "alias v=nvim" >> $HOME/.zshrc
+echo "alias xc=xclip -sel clipboard" >> $HOME/.zshrc
+
+source ~/.zshrc
+
+
+# Extensões
+
+# Blur my Shell
+# Dash to Dock
+# Logo Menu
+# Run Cat
+# Unblank lock screen
+
